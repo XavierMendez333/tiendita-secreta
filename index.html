@@ -60,6 +60,17 @@
   </style>
 </head>
 <body>
+  <script>
+  const contraseñaCorrecta = "japonjulio";
+
+  const entrada = prompt(" Tiendita Secreta - Ingresa la contraseña:");
+
+  if (entrada !== contraseñaCorrecta) {
+    alert("Contraseña incorrecta. Acceso denegado.");
+    document.body.innerHTML = "<h1 style='text-align:center; margin-top:100px;'>🔒 Acceso restringido</h1>";
+    throw new Error("Bloqueo por contraseña");
+  }
+</script>
   <header>
     <h1>✨ Tiendita Secreta de PokecomprasMX ✨</h1>
 <img src="Logo.jpg" alt="Logo Pokecompras">
