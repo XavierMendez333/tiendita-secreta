@@ -66,6 +66,15 @@
       font-size: 1em;
       margin: 5px 0;
     }
+      @keyframes palpitar {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.04); }
+  100% { transform: scale(1); }
+}
+
+.palpitante {
+  animation: palpitar 2s infinite;
+}
   </style>
 </head>
 
@@ -405,7 +414,7 @@
   <p style="font-weight: bold; color: #b76f00;">Precio: 10,000 puntos</p>
   <p style="font-size: 0.9em; color: #666;">*Válido por 1 Pokémon Fit del Pokémon Center<br>Envío no incluido*</p>
 </div>
-      <div class="producto" style="border: 3px dashed #ff7ca8; background-color: #ffe0ec;">
+     <div class="producto palpitante" style="border: 3px dashed #ff7ca8; background-color: #ffe0ec;">
   <img src="https://i.imgur.com/VB7oZgl.jpeg" alt="Cupón para Mascot de Sanrio (Envío no incluido)" style="border: 2px solid #ff7ca8;">
   <h2 style="color: #d93675;">🎟️ Cupón Mascot Sanrio</h2>
   <p style="font-weight: bold; color: #b1265f;">Precio: 10,000 puntos</p>
