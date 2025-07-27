@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-    <script>
-  const contraseñaCorrecta = "amopokecompras";
-  const entrada = prompt("Tiendita Secreta - Ingresa la contraseña:");
+  <script>
+    const contraseñaCorrecta = "amopokecompras";
+    const entrada = prompt("Tiendita Secreta - Ingresa la contraseña:");
 
-  if (entrada !== contraseñaCorrecta) {
-    document.write("<h1 style='text-align:center; margin-top:100px;'>🔒 Acceso restringido</h1>");
-    throw new Error("Contraseña incorrecta: se detuvo la carga de la página.");
-  }
-</script>
+    if (entrada !== contraseñaCorrecta) {
+      document.write("<h1 style='text-align:center; margin-top:100px;'>🔒 Acceso restringido</h1>");
+      throw new Error("Contraseña incorrecta: se detuvo la carga de la página.");
+    }
+  </script>
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -48,6 +48,7 @@
       text-align: center;
       box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transition: transform 0.2s ease;
+      position: relative;
     }
     .producto:hover {
       transform: scale(1.03);
@@ -57,6 +58,10 @@
       height: 300px;
       object-fit: cover;
       border-radius: 10px;
+      transition: opacity 0.3s;
+    }
+    .producto.agotado img {
+      opacity: 0.4;
     }
     .producto h2 {
       font-size: 1.2em;
@@ -66,62 +71,66 @@
       font-size: 1em;
       margin: 5px 0;
     }
-      @keyframes palpitar {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.04); }
-  100% { transform: scale(1); }
-}
-
-.palpitante {
-  animation: palpitar 2s infinite;
-}
+    .etiqueta-agotado {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background-color: rgba(0, 0, 0, 0.7);
+      color: white;
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 0.9em;
+    }
+    @keyframes palpitar {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+      100% { transform: scale(1); }
+    }
+    .palpitante {
+      animation: palpitar 2s infinite;
+    }
   </style>
 </head>
-
 <body>
   <header>
     <h1>✨ Tiendita Secreta de PokecomprasMX ✨</h1>
-<img src="Logo.jpg" alt="Logo Pokecompras">
+    <img src="Logo.jpg" alt="Logo Pokecompras">
     <p>Solo para clientes especiales ♡</p>
   </header>
 
   <div class="contenedor-productos"></div>
 
-    
-<script>
-  const productos = [
-    {
-      nombre: "Photocard 2.0",
-      puntos: 1000,
-      imagen: "https://i.imgur.com/UCA8Hua.jpeg",
-      agotado: false
-    },
-    {
-      nombre: "Hipper Sonny Angel Manzana",
-      puntos: 5000,
-      imagen: "https://i.imgur.com/JDuyFxL.jpeg",
-      agotado: false
-    }
-  ];
+  <script>
+    const productos = [
+      { nombre: "Photocard 2.0", puntos: 1000, imagen: "https://i.imgur.com/UCA8Hua.jpeg", agotado: false },
+      { nombre: "Hipper Sonny Angel Manzana", puntos: 5000, imagen: "https://i.imgur.com/JDuyFxL.jpeg", agotado: false },
+      { nombre: "Cupón para un tiro de Gashapon gratis (topado a $180)", puntos: 5000, imagen: "https://i.imgur.com/5lasyLy.jpeg", agotado: false },
+      { nombre: "Cupón para Mascot de Sanrio (Envío no incluido)", puntos: 10000, imagen: "https://i.imgur.com/VB7oZgl.jpeg", agotado: false },
+      { nombre: "Cupón para Pokemon Fit del Pokemon Center (envío no incluido)", puntos: 10000, imagen: "https://i.imgur.com/YVdYXPQ.png", agotado: false },
+      { nombre: "Stickers Japoneses", puntos: 2500, imagen: "https://i.imgur.com/eqnVFDg.jpeg", agotado: false },
+      { nombre: "Figura de Gachapon", puntos: 2000, imagen: "https://i.imgur.com/K7hFb3g.jpeg", agotado: false }
+    ];
 
-  productos.sort((a, b) => b.puntos - a.puntos); // Ordena de mayor a menor
+    productos.sort((a, b) => b.puntos - a.puntos);
 
-  const contenedor = document.querySelector(".contenedor-productos");
+    const contenedor = document.querySelector(".contenedor-productos");
 
-  productos.forEach(producto => {
-    const div = document.createElement("div");
-    div.className = "producto";
+    productos.forEach(producto => {
+      const div = document.createElement("div");
+      div.className = "producto" + (producto.agotado ? " agotado" : "");
 
-    div.innerHTML = `
-      <img src="${producto.imagen}" alt="${producto.nombre}">
-      <h2>${producto.nombre}</h2>
-      <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
-      ${producto.agotado ? "<h2>Agotado</h2>" : ""}
-    `;
+      div.innerHTML = `
+        ${producto.agotado ? '<div class="etiqueta-agotado">Agotado</div>' : ""}
+        <img src="${producto.imagen}" alt="${producto.nombre}">
+        <h2>${producto.nombre}</h2>
+        <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
+      `;
 
-    contenedor.appendChild(div);
-  });
-</script>
+      contenedor.appendChild(div);
+    });
+  </script>
+</body>
+</html>
 
 </body>
 </html>
