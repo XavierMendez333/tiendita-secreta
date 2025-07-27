@@ -195,17 +195,17 @@
 let totalPuntos = 0;
 
 function actualizarCarrito() {
-  const lista = document.getElementById("lista-carrito");
-  const total = document.getElementById("total-puntos");
-
-  if (carrito.length === 0) {
-    lista.textContent = "No has seleccionado productos todavía.";
-  } else {
-    lista.innerHTML = carrito.map(p => `• ${p.nombre} (${p.puntos} pts)`).join("<br>");
-  }
-
-  total.textContent = totalPuntos;
+  listaCarrito.innerHTML = "";
+  let total = 0;
+  carrito.forEach(producto => {
+    const li = document.createElement("li");
+    li.textContent = `${producto.nombre} - ${producto.puntos} pts`;
+    listaCarrito.appendChild(li);
+    total += producto.puntos;
+  });
+  totalPuntos.textContent = total.toLocaleString();
 }
+
 
 
     productos.forEach(producto => {
