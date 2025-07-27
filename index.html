@@ -106,6 +106,13 @@
     <p>Solo para clientes especiales ♡</p>
   </header>
 
+  <div style="text-align: center; padding: 20px; background-color: #fff0f6;">
+  <input type="text" id="busqueda-nombre" placeholder="🔍 Buscar por nombre" style="padding:10px; width: 200px; border-radius:10px;">
+  <input type="number" id="busqueda-puntos" placeholder="🎯 Puntos exactos" style="padding:10px; width: 150px; border-radius:10px; margin-left:10px;">
+  <button onclick="filtrarProductos()" style="padding:10px 15px; margin-left:10px; border-radius:10px; background-color:#ff5e7e; color:white;">Buscar</button>
+  <button onclick="reiniciarBusqueda()" style="padding:10px 15px; margin-left:5px; border-radius:10px; background-color:#aaa;">Reset</button>
+</div>
+  
  <div id="carrito" style="background-color:#fff0f6; padding: 20px; text-align: center;">
   <h2>🛒 Tu carrito</h2>
   <p id="lista-carrito">No has seleccionado productos todavía.</p>
@@ -221,41 +228,45 @@ function actualizarCarrito() {
 
 
 
-    productos.forEach(producto => {
-      const div = document.createElement("div");
-      div.className = "producto" + (producto.agotado ? " agotado" : "");
+function mostrarProductos(lista) {
+  contenedor.innerHTML = ""; // Limpia productos anteriores
 
-      div.innerHTML = `
-        ${producto.agotado ? '<div class="etiqueta-agotado">Agotado</div>' : ""}
-        <img src="${producto.imagen}" alt="${producto.nombre}">
-        <h2>${producto.nombre}</h2>
-        <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
-      `;
-  if (!producto.agotado) {
-  div.addEventListener("click", () => {
-    const index = carrito.indexOf(producto);
-    
-    if (index === -1) {
-      // No estaba en el carrito, lo agregamos
-      carrito.push(producto);
-      totalPuntos += producto.puntos;
-      div.classList.add("seleccionado");
-    } else {
-      // Ya estaba, lo quitamos
-      carrito.splice(index, 1);
-      totalPuntos -= producto.puntos;
-      div.classList.remove("seleccionado");
+  lista.forEach(producto => {
+    const div = document.createElement("div");
+    div.className = "producto" + (producto.agotado ? " agotado" : "");
+
+    div.innerHTML = `
+      ${producto.agotado ? '<div class="etiqueta-agotado">Agotado</div>' : ""}
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h2>${producto.nombre}</h2>
+      <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
+    `;
+
+    if (!producto.agotado) {
+      div.addEventListener("click", () => {
+        const index = carrito.indexOf(producto);
+
+        if (index === -1) {
+          carrito.push(producto);
+          totalPuntos += producto.puntos;
+          div.classList.add("seleccionado");
+        } else {
+          carrito.splice(index, 1);
+          totalPuntos -= producto.puntos;
+          div.classList.remove("seleccionado");
+        }
+
+        actualizarCarrito();
+      });
     }
 
-    actualizarCarrito();
+    contenedor.appendChild(div);
   });
 }
 
+// Mostrar todos al inicio
+mostrarProductos(productos);
 
-
-
-      contenedor.appendChild(div);
-    });
 function vaciarCarrito() {
   carrito = [];
   totalPuntos = 0;
@@ -283,6 +294,25 @@ function vaciarCarrito() {
   window.open(url, "_blank");
 }
 
+function filtrarProductos() {
+  const texto = document.getElementById("busqueda-nombre").value.toLowerCase();
+  const puntos = parseInt(document.getElementById("busqueda-puntos").value);
+
+  const filtrados = productos.filter(p => {
+    const coincideNombre = p.nombre.toLowerCase().includes(texto);
+    const coincidePuntos = isNaN(puntos) || p.puntos === puntos;
+    return coincideNombre && coincidePuntos;
+  });
+
+  mostrarProductos(filtrados);
+}
+
+function reiniciarBusqueda() {
+  document.getElementById("busqueda-nombre").value = "";
+  document.getElementById("busqueda-puntos").value = "";
+  mostrarProductos(productos);
+}
+    
 
     
   </script>
