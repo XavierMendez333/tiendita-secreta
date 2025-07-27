@@ -89,6 +89,13 @@
     <p>Solo para clientes especiales ♡</p>
   </header>
 
+  <div id="carrito" style="background-color:#fff0f6; padding: 20px; text-align: center;">
+  <h2>🛒 Tu carrito</h2>
+  <p id="lista-carrito">No has seleccionado productos todavía.</p>
+  <p><strong>Total de puntos:</strong> <span id="total-puntos">0</span></p>
+</div>
+
+
   <div class="contenedor-productos"></div>
 
   <script>
@@ -170,6 +177,23 @@
 
     const contenedor = document.querySelector(".contenedor-productos");
 
+    let carrito = [];
+let totalPuntos = 0;
+
+function actualizarCarrito() {
+  const lista = document.getElementById("lista-carrito");
+  const total = document.getElementById("total-puntos");
+
+  if (carrito.length === 0) {
+    lista.textContent = "No has seleccionado productos todavía.";
+  } else {
+    lista.innerHTML = carrito.map(p => `• ${p.nombre} (${p.puntos} pts)`).join("<br>");
+  }
+
+  total.textContent = totalPuntos;
+}
+
+
     productos.forEach(producto => {
       const div = document.createElement("div");
       div.className = "producto" + (producto.agotado ? " agotado" : "");
@@ -180,9 +204,18 @@
         <h2>${producto.nombre}</h2>
         <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
       `;
+  if (!producto.agotado) {
+    div.addEventListener("click", () => {
+      carrito.push(producto);
+      totalPuntos += producto.puntos;
+      actualizarCarrito();
+    });
+  }
 
       contenedor.appendChild(div);
     });
+
+    
   </script>
 
   
