@@ -300,7 +300,7 @@ function filtrarProductos() {
 
   const filtrados = productos.filter(p => {
     const coincideNombre = p.nombre.toLowerCase().includes(texto);
-    const coincidePuntos = isNaN(puntos) || p.puntos === puntos;
+    const coincidePuntos = isNaN(puntos) || p.puntos <= puntos;
     return coincideNombre && coincidePuntos;
   });
 
