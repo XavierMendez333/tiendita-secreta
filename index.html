@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tiendita Secreta - PokecomprasMX</title>
   <style>
+    
     body {
       background-color: #ffeef8;
       font-family: 'Comic Sans MS', cursive, sans-serif;
@@ -80,6 +81,17 @@
     .palpitante {
       animation: palpitar 2s infinite;
     }
+    .vaciar-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #ff5e7e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
   </style>
 </head>
 <body>
@@ -93,6 +105,8 @@
   <h2>🛒 Tu carrito</h2>
   <p id="lista-carrito">No has seleccionado productos todavía.</p>
   <p><strong>Total de puntos:</strong> <span id="total-puntos">0</span></p>
+  <button class="vaciar-btn" onclick="vaciarCarrito()">Vaciar carrito</button>
+  
 </div>
 
 
@@ -214,6 +228,10 @@ function actualizarCarrito() {
 
       contenedor.appendChild(div);
     });
+function vaciarCarrito() {
+  carrito = [];
+  actualizarCarrito();
+}
 
     
   </script>
