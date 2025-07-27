@@ -87,345 +87,41 @@
 
   <div class="contenedor-productos">
     
-    <div class="producto">
-  <img src="https://i.imgur.com/FQu5DcW.jpeg" alt="Figura Perrito de Pan">
-  <h2>Figura Perrito de Pan</h2>
-  <p>Precio: 2500 puntos</p> <h2>Agotado</h2>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/Bj59XUD.jpeg" alt="Carta Charizard Tera Dark">
-  <h2>Carta Charizard Tera Dark</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/5fbcwPS.jpeg" alt="Carta de Nami">
-  <h2>Carta de Nami</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
+  const productos = [
+    {
+      nombre: "Photocard 2.0",
+      puntos: 1000,
+      imagen: "https://i.imgur.com/UCA8Hua.jpeg",
+      agotado: false
+    },
+    {
+      nombre: "Hipper Sonny Angel Manzana",
+      puntos: 5000,
+      imagen: "https://i.imgur.com/JDuyFxL.jpeg",
+      agotado: false
+    }
+  ];
 
-<div class="producto">
-  <img src="https://i.imgur.com/YcPKk8v.jpeg" alt="Carta Slakoth haciendo nada">
-  <h2>Carta Slakoth haciendo nada</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
+  productos.sort((a, b) => b.puntos - a.puntos); // Ordena de mayor a menor
 
-<div class="producto">
-  <img src="https://i.imgur.com/JA8ywul.jpeg" alt="Acrílico Koraidon con base">
-  <h2>Acrílico Koraidon con base</h2>
-  <p>Precio: 3000 puntos</p>
-</div>
+  const contenedor = document.querySelector(".contenedor-productos");
 
-<div class="producto">
-  <img src="https://i.imgur.com/BweBJh7.jpeg" alt="Porta tarjetas My Melody">
-  <h2>Porta tarjetas My Melody</h2>
-  <p>Precio: 3000 puntos</p><h2>Agotado</h2>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/yvYu4Cv.jpeg" alt="Carta Ultimate Blue Eyes White Dragon">
-  <h2>Carta Ultimate Blue Eyes White Dragon</h2>
-  <p>Precio: 3000 puntos</p>
-</div>
+  productos.forEach(producto => {
+    const div = document.createElement("div");
+    div.className = "producto";
 
-<div class="producto">
-  <img src="https://i.imgur.com/0YaRo3D.jpeg" alt="Kewpie Sakura de Gachapon">
-  <h2>Kewpie Sakura de Gachapon</h2>
-  <p>Precio: 2000 puntos</p> <h2>Agotado</h2>
-</div>
+    div.innerHTML = `
+      <img src="${producto.imagen}" alt="${producto.nombre}">
+      <h2>${producto.nombre}</h2>
+      <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
+      ${producto.agotado ? "<h2>Agotado</h2>" : ""}
+    `;
 
-<div class="producto">
-  <img src="https://i.imgur.com/TEe8lrm.jpeg" alt="Cable bite">
-  <h2>Cable bite</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
+    contenedor.appendChild(div);
+  });
+</script>
 
-<div class="producto">
-  <img src="https://i.imgur.com/XnmazTF.jpeg" alt="Charm de Charmander">
-  <h2>Charm de Charmander</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/1mooPaK.jpeg" alt="Sobre Pokemon Koreano">
-  <h2>Sobre Pokemon Koreano</h2>
-  <p>Precio: 1500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/VG6qjc7.jpeg" alt="Carta One Piece Luffy">
-  <h2>Carta One Piece Luffy</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/auxNqFt.jpeg" alt="Carta Pokemon Tropius">
-  <h2>Carta Pokemon Tropius</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/mCPcUwd.jpeg" alt="Charm Sylveon">
-  <h2>Charm Sylveon</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/ctc4khS.jpeg" alt="Charm Magikarp">
-  <h2>Charm Magikarp</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/APu51cI.jpeg" alt="Llavero Kirby 30 Aniversario">
-  <h2>Llavero Kirby 30 Aniversario</h2>
-  <p>Precio: 3000 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/3vNfcAB.jpeg" alt="Sobre Pokemon Spectrier">
-  <h2>Sobre Pokemon Spectrier</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/VR1RVSU.jpeg" alt="Charm Tinkatink">
-  <h2>Charm Tinkatink</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/JDuyFxL.jpeg" alt="Hipper Sonny Angel Manzana">
-  <h2>Hipper Sonny Angel Manzana</h2>
-  <p>Precio: 5000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/v7TIM43.jpeg" alt="Charm Eevee">
-  <h2>Charm Eevee</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/QCgXzNj.jpeg" alt="Figura Kuriboh Yugioh">
-  <h2>Figura Kuriboh Yugioh</h2>
-  <p>Precio: 3000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/mFr8fvx.jpeg" alt="Llavero Pokemon Ogerpon">
-  <h2>Llavero Pokemon Ogerpon</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/JMrXmzE.jpeg" alt="Charm Jigglypuff">
-  <h2>Charm Jigglypuff</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/IhPQvQG.jpeg" alt="Figura Hachiware">
-  <h2>Figura Hachiware</h2>
-  <p>Precio: 2500 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/tJqcuzb.jpeg" alt="Figura Chikawa en pijama">
-  <h2>Figura Chikawa en pijama</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/2M0vlx4.jpeg" alt="Sonny Angel Buho">
-  <h2>Sonny Angel Buho</h2>
-  <p>Precio: 4000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/HLDRIz7.jpeg" alt="Photocard">
-  <h2>Photocard</h2>
-  <p>Precio: 1000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/rNIYJWQ.jpeg" alt="Camita de fresas para ternurines">
-  <h2>Camita de fresas para ternurines</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/UCA8Hua.jpeg" alt="Photocard 2.0">
-  <h2>Photocard 2.0</h2>
-  <p>Precio: 1000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/Ky1c7Pq.jpeg" alt="Llavero Pokemon Dragonite">
-  <h2>Llavero Pokemon Dragonite</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/pkoGZDY.jpeg" alt="Sonny Angel León">
-  <h2>Sonny Angel León</h2>
-  <p>Precio: 4000 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/W4fYjsM.jpeg" alt="Mascot Cinnamonroll heladito">
-  <h2>Mascot Cinnamonroll heladito</h2>
-  <p>Precio: 2500 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/WDBSJ2F.jpeg" alt="Sonny Angel Zanahoria">
-  <h2>Sonny Angel Zanahoria</h2>
-  <p>Precio: 4000 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/ny23Y5q.jpeg" alt="Camita en forma de fresa">
-  <h2>Camita en forma de fresa</h2>
-  <p>Precio: 2500 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/fDJWFQB.jpeg" alt="Figura de Piplup Pokemon">
-  <h2>Figura de Piplup Pokemon</h2>
-  <p>Precio: 2500 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/tdGCCeN.jpeg" alt="Peluchito de Snoopy">
-  <h2>Peluchito de Snoopy</h2>
-  <p>Precio: 3000 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/azz4OzU.jpeg" alt="Sobre Yu Gi Oh Rush Duel">
-  <h2>Sobre Yu Gi Oh Rush Duel</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/Q6vwURR.jpeg" alt="Toallita Hamtaro">
-  <h2>Toallita Hamtaro</h2>
-  <p>Precio: 2500 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/PBQM4H8.jpeg" alt="Hipper Mofusand Calamar">
-  <h2>Hipper Mofusand Calamar</h2>
-  <p>Precio: 5000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/px60tl6.jpeg" alt="Pluma con acrílico de gatito">
-  <h2>Pluma con acrílico de gatito</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/Tsec6DZ.jpeg" alt="Hipper Sonny Angel Patito">
-  <h2>Hipper Sonny Angel Patito</h2>
-  <p>Precio: 5000 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/TTmAFEh.jpeg" alt="Acrílico Dandadan">
-  <h2>Acrílico Dandadan</h2>
-  <p>Precio: 2000 puntos</p><h2>Agotado</h2>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/rBdz09I.jpeg" alt="Pluma Jet Stream 0.7 mm">
-  <h2>Pluma Jet Stream 0.7 mm</h2>
-  <p>Precio: 2000 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/0cyp4W7.jpeg" alt="Jujutsu Kaisen carta sorpresa">
-  <h2>Jujutsu Kaisen carta sorpresa</h2> 
-  <p>Precio: 2000 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/7OgEoLG.jpeg" alt="Sticker Sorpresa Chikawa">
-  <h2>Sticker Sorpresa Chikawa</h2>
-  <p>Precio: 2000 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/pCfCS1Z.jpeg" alt="Set de 65 micas “Regular” (Tamaño para TCG de Pokémon)">
-  <h2>Set de 65 micas “Regular” (Tamaño para TCG de Pokémon)</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/hQ0tSez.jpeg" alt="Hangyodon mascot">
-  <h2>Hangyodon mascot</h2>
-  <p>Precio: 3500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/dq1Ud3A.jpeg" alt="Pluma JetStream 0.7 mm">
-  <h2>Pluma JetStream 0.7 mm</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/GgJcx12.jpeg" alt="Figura de Momonga">
-  <h2>Figura de Momonga</h2>
-  <p>Precio: 2500 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/Ku9hrpY.jpeg" alt="Dulces Japoneses Hayakawa">
-  <h2>Dulces Japoneses Hayakawa</h2> 
-  <p>Precio: 2500 puntos</p> <h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/ou4hm8Q.jpeg" alt="Cup Strap Kirby">
-  <h2>Manga para vaso de Café de Kirby</h2>
-  <p>Precio: 1000 puntos</p><h2>Agotado</h2>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/UhSdFl2.jpeg" alt="Sonny Angel Reno">
-  <h2>Sonny Angel Reno</h2>
-  <p>Precio: 4000 puntos</p>
-</div>
-    <div class="producto">
-  <img src="https://i.imgur.com/Qs6Pxfg.jpeg" alt="Dulces de Rilakkuma">
-  <h2>Dulces de Rilakkuma</h2> 
-  <p>Precio: 2500 puntos</p> <h2>Agotado</h2>
-</div>  
-      <div class="producto">
-  <img src="https://i.imgur.com/eqnVFDg.jpeg" alt="Stickers Japoneses">
-  <h2>Stickers Japoneses</h2>
-  <p>Precio: 2500 puntos</p>
-</div>
-
-<div class="producto">
-  <img src="https://i.imgur.com/K7hFb3g.jpeg" alt="Figura de Gachapon">
-  <h2>Figura de Gachapon</h2>
-  <p>Precio: 2000 puntos</p>
-</div>
-
-      <div class="producto palpitante" style="border: 3px dashed #f2c94c; background-color: #fffbe6;">
-  <img src="https://i.imgur.com/YVdYXPQ.png" alt="Cupón para Pokemon Fit del Pokemon Center (envío no incluido)" style="border: 2px solid #f2c94c;">
-  <h2 style="color: #d49f00;">🎟️ Cupón Pokémon Fit</h2>
-  <p style="font-weight: bold; color: #b76f00;">Precio: 10,000 puntos</p>
-  <p style="font-size: 0.9em; color: #666;">*Válido por 1 Pokémon Fit del Pokémon Center<br>Envío no incluido*</p>
-</div>
-     <div class="producto palpitante" style="border: 3px dashed #ff7ca8; background-color: #ffe0ec;">
-  <img src="https://i.imgur.com/VB7oZgl.jpeg" alt="Cupón para Mascot de Sanrio (Envío no incluido)" style="border: 2px solid #ff7ca8;">
-  <h2 style="color: #d93675;">🎟️ Cupón Mascot Sanrio</h2>
-  <p style="font-weight: bold; color: #b1265f;">Precio: 10,000 puntos</p>
-  <p style="font-size: 0.9em; color: #5c5c5c;">*Válido por 1 Mascot Sanrio de colección<br>Envío no incluido*</p>
-</div>
-      <div class="producto palpitante" style="border: 3px dashed #c79df2; background-color: #f4eaff;">
-  <img src="https://i.imgur.com/HW9o9yy.jpeg" alt="Cupón para un tiro de Gashapon gratis (topado a $180)" style="border: 2px solid #c79df2;">
-  <h2 style="color: #9557d4;">🎟️ Cupón Gashapon Gratis</h2>
-  <p style="font-weight: bold; color: #7a38af;">Precio: 5,000 puntos</p>
-  <p style="font-size: 0.9em; color: #5c5c5c;">*Válido por 1 tiro de Gashapon (hasta $180 MXN)*</p>
-</div>
+      </div>
 </body>
 </html>
 
