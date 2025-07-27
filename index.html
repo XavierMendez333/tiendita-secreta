@@ -101,11 +101,12 @@
     <p>Solo para clientes especiales ♡</p>
   </header>
 
-  <div id="carrito" style="background-color:#fff0f6; padding: 20px; text-align: center;">
+ <div id="carrito" style="background-color:#fff0f6; padding: 20px; text-align: center;">
   <h2>🛒 Tu carrito</h2>
   <p id="lista-carrito">No has seleccionado productos todavía.</p>
   <p><strong>Total de puntos:</strong> <span id="total-puntos">0</span></p>
-  <button class="vaciar-btn" onclick="vaciarCarrito()">Vaciar carrito</button>
+</div>
+
   
 </div>
 
@@ -195,16 +196,18 @@
 let totalPuntos = 0;
 
 function actualizarCarrito() {
-  listaCarrito.innerHTML = "";
-  let total = 0;
-  carrito.forEach(producto => {
-    const li = document.createElement("li");
-    li.textContent = `${producto.nombre} - ${producto.puntos} pts`;
-    listaCarrito.appendChild(li);
-    total += producto.puntos;
-  });
-  totalPuntos.textContent = total.toLocaleString();
+  const lista = document.getElementById("lista-carrito");
+  const total = document.getElementById("total-puntos");
+
+  if (carrito.length === 0) {
+    lista.textContent = "No has seleccionado productos todavía.";
+  } else {
+    lista.innerHTML = carrito.map(p => `• ${p.nombre} (${p.puntos} pts)`).join("<br>");
+  }
+
+  total.textContent = totalPuntos;
 }
+
 
 
 
@@ -218,13 +221,14 @@ function actualizarCarrito() {
         <h2>${producto.nombre}</h2>
         <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
       `;
-  if (!producto.agotado) {
+   if (!producto.agotado) {
     div.addEventListener("click", () => {
       carrito.push(producto);
       totalPuntos += producto.puntos;
       actualizarCarrito();
     });
   }
+
 
       contenedor.appendChild(div);
     });
