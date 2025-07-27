@@ -231,12 +231,24 @@ function actualizarCarrito() {
       `;
   if (!producto.agotado) {
   div.addEventListener("click", () => {
-    carrito.push(producto);
-    totalPuntos += producto.puntos;
-    div.classList.add("seleccionado");
+    const index = carrito.indexOf(producto);
+    
+    if (index === -1) {
+      // No estaba en el carrito, lo agregamos
+      carrito.push(producto);
+      totalPuntos += producto.puntos;
+      div.classList.add("seleccionado");
+    } else {
+      // Ya estaba, lo quitamos
+      carrito.splice(index, 1);
+      totalPuntos -= producto.puntos;
+      div.classList.remove("seleccionado");
+    }
+
     actualizarCarrito();
   });
 }
+
 
 
 
