@@ -91,6 +91,11 @@
   border-radius: 8px;
   cursor: pointer;
 }
+    .producto.seleccionado {
+  border: 3px solid #ff69b4;
+  box-shadow: 0 0 10px #ff69b4;
+}
+
 
   </style>
 </head>
@@ -224,13 +229,15 @@ function actualizarCarrito() {
         <h2>${producto.nombre}</h2>
         <p>Precio: ${producto.puntos.toLocaleString()} puntos</p>
       `;
-   if (!producto.agotado) {
-    div.addEventListener("click", () => {
-      carrito.push(producto);
-      totalPuntos += producto.puntos;
-      actualizarCarrito();
-    });
-  }
+  if (!producto.agotado) {
+  div.addEventListener("click", () => {
+    carrito.push(producto);
+    totalPuntos += producto.puntos;
+    div.classList.add("seleccionado");
+    actualizarCarrito();
+  });
+}
+
 
 
       contenedor.appendChild(div);
@@ -238,8 +245,15 @@ function actualizarCarrito() {
 function vaciarCarrito() {
   carrito = [];
   totalPuntos = 0;
+
+  // Elimina clase visual de seleccionados
+  document.querySelectorAll('.producto.seleccionado').forEach(div => {
+    div.classList.remove('seleccionado');
+  });
+
   actualizarCarrito();
 }
+
 
     
   </script>
