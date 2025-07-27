@@ -105,6 +105,9 @@
   <h2>🛒 Tu carrito</h2>
   <p id="lista-carrito">No has seleccionado productos todavía.</p>
   <p><strong>Total de puntos:</strong> <span id="total-puntos">0</span></p>
+ <button class="vaciar-btn" onclick="vaciarCarrito()">🗑️ Vaciar carrito</button>
+
+
 </div>
 
   
@@ -234,6 +237,7 @@ function actualizarCarrito() {
     });
 function vaciarCarrito() {
   carrito = [];
+  totalPuntos = 0;
   actualizarCarrito();
 }
 
