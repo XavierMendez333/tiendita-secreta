@@ -111,6 +111,8 @@
   <p id="lista-carrito">No has seleccionado productos todavía.</p>
   <p><strong>Total de puntos:</strong> <span id="total-puntos">0</span></p>
  <button class="vaciar-btn" onclick="vaciarCarrito()">🗑️ Vaciar carrito</button>
+   <button class="vaciar-btn" onclick="enviarPorWhatsapp()">📲 Enviar selección por WhatsApp</button>
+
 
 
 </div>
@@ -264,6 +266,21 @@ function vaciarCarrito() {
   });
 
   actualizarCarrito();
+}
+
+    function enviarPorWhatsapp() {
+  if (carrito.length === 0) {
+    alert("Aún no has seleccionado productos.");
+    return;
+  }
+
+  const productosTexto = carrito.map(p => `• ${p.nombre} (${p.puntos} pts)`).join("%0A");
+  const totalTexto = `Total: ${totalPuntos} puntos`;
+  const mensaje = `¡Hola! Estos son los productos que quiero canjear:%0A%0A${productosTexto}%0A%0A${totalTexto}`;
+
+  const numero = "525663858436"; // Reemplaza por tu número con lada de México (sin signos +)
+  const url = `https://wa.me/${numero}?text=${mensaje}`;
+  window.open(url, "_blank");
 }
 
 
