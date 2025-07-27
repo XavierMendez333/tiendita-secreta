@@ -156,7 +156,12 @@
 { nombre: "Hipper Sonny Angel Patito", puntos: 5000, imagen: "https://i.imgur.com/Tsec6DZ_d.jpeg?maxwidth=520&shape=thumb&fidelity=high", agotado: true }      
     ];
 
-    productos.sort((a, b) => b.puntos - a.puntos);
+   productos.sort((a, b) => {
+  if (a.agotado === b.agotado) {
+    return b.puntos - a.puntos; // Si ambos están agotados o disponibles, ordena por puntos
+  }
+  return a.agotado ? 1 : -1; // Si a está agotado, va después
+});
 
     const contenedor = document.querySelector(".contenedor-productos");
 
